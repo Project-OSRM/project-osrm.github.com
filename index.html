@@ -25,7 +25,7 @@ Try our amazing public routing service at <a href="http://map.project-osrm.org/"
 	<ul>
   <li> <b>Wiki</b> [<a href="https://github.com/DennisOSRM/Project-OSRM/wiki">here</a>]
   </li>
-  <li> <b>Mailing list </b> [<a href="http://lists.openstreetmap.org/listinfo/osrm-talk">here</a>] 
+  <li> <b>Mailing list </b> [<a href="http://lists.openstreetmap.org/listinfo/osrm-talk">here</a>]
   </li>
   <li> <b>Bug Tracker </b> [<a href="https://github.com/DennisOSRM/Project-OSRM/issues">here</a>]
   </li>
@@ -38,8 +38,8 @@ The Open Source Routing Machine (<strong>OSRM</strong>) is a C++ implementation 
 It combines sophisticated routing algorithms with the open and free road network data of the <a href="http://www.openstreetmap.org">OpenStreetMap</a> (OSM) project.
 Shortest path computation on a <strong>continental sized network</strong> can take up to several seconds if it is done without a so-called speedup-technique.
 OSRM is able to compute and output a shortest path between any origin and destination within a few miliseconds.
-Since it is designed with <strong>OpenStreetMap</strong> compatibility in mind, OSM data files can be easily imported. 
-A <a href="http://map.project-osrm.org/">demo installation</a> is sponsored by Karlsruhe Institute of Technology and previously by our friends at <a href="http://www.geofabrik.de">Geofabrik</a>. 
+Since it is designed with <strong>OpenStreetMap</strong> compatibility in mind, OSM data files can be easily imported.
+A <a href="http://map.project-osrm.org/">demo installation</a> is sponsored by Karlsruhe Institute of Technology and previously by our friends at <a href="http://www.geofabrik.de">Geofabrik</a>.
 OSRM is under active development.
 </p>
 
@@ -59,7 +59,7 @@ OSRM is under active development.
 
 <h2> License </h2>
 
-<p> OSRM is free, open source, and available under the <a href="http://www.gnu.org/licenses/agpl-3.0.html">GNU Affero General Public License</a>. 
+<p> OSRM is free, open source, and available under the <a href="http://www.gnu.org/licenses/agpl-3.0.html">GNU Affero General Public License</a>.
 Companies with concerns about the AGPL should contact us to work something out.</p>
 
 <h2> Platforms supported </h2>
@@ -79,14 +79,15 @@ Companies with concerns about the AGPL should contact us to work something out.<
      	Windows<br>
      	Mac OS X (more or less)
       </td>
-      <td> 
-      	g++ 4.2.3 (with warnings and unsupported)<br>
-      	g++ 4.3+ <br>
-	llvm-g++/dragonegg 2.8+ </td>
       <td>
-      Boost 1.41+<br>
+      	g++ 4.4+ <br>
+      	llvm-g++/dragonegg 2.8+ <br>
+        llvm/clang 3.2+<br>
+        icc 13.0+</td>
+      <td>
+      Boost 1.44+<br>
       libxml2 2.7+<br>
-      scons 2.10+<br>
+      cmake 2.8+<br>
       stxxl 1.3.1+  <br>
       libprotobuf 2.30+
       </td>
@@ -96,9 +97,9 @@ Companies with concerns about the AGPL should contact us to work something out.<
 
 <h2> Current version </h2>
 
-<p> Version 0.1 (July 10, 2010) is a baseline release. It has basic features. Version 0.2 (March 2011) is much faster and resource friendly. While it is safe to use this version, the code in git master branch is much more advanced.</p>
+<p> Version 0.1 (July 10, 2010) is a baseline release. It has basic features. Version 0.2 (March 2011) is much faster and resource friendly. While it is safe to use this version, the code in git master branch is much more advanced. Version 0.3.4 is the current release that is geared toward new and exciting features.</p>
 
-<h2> Major improvements in version 0.3 </h2>
+<h2> Major improvements in version 0.3 over 0.2</h2>
 <table>
 
   <tbody>
@@ -111,16 +112,28 @@ Companies with concerns about the AGPL should contact us to work something out.<
   <li> Turn costs and restrictions </li>
   <li> Windows support (and Mac in principle)</li>
   <li> OSM file preprocessing multi-threaded </li>
-  <li> Support for GCC 4.2 and also for systems not supporting OpenMP </li>
+  <li> Support for GCC 4.4+ and also for systems not supporting OpenMP </li>
   <li> User-definable speed profile </li>
   <li> Better and more efficient polyline generalization </li>
+  <li> Scons has been replaced by cmake </li>
+  <li> Replacing nearest neighbor grid by a packed Hilbert R-tree </li>
+  <li> Fixing test to reflect new nn grid data structure </li>
+  <li> Speed optimization in PBF parsing </li>
+  <li> Don't abort if timestamp is missing, just warn </li>
+  <li> More verbose output during preprocessing </li>
+  <li> De-template-izing some of the code for faster (re-)compile </li>
+  <li> Replaced stringstream based int->string cast with boost karma </li>
+  <li> Removed evil lexical cast </li>
+  <li> Updated tests in test suite </li>
+  <li> Removed GUARANTEE macro </li>
+  <li> Fixed include order in many files </li>
   <li> many, many bug fixes </li>
   <li> many under-the-hood improvements </li>
   <li> For a detailed list, please read the <a href="https://github.com/DennisOSRM/Project-OSRM/commits/master">Timeline</a>. </li>
 </ul>
 </td>
       <td>
-      
+
 <script tystxxlpe="text/javascript" src="http://www.ohloh.net/p/487596/widgets/project_basic_stats.js"></script>
       </td>
     </tr>
@@ -132,7 +145,7 @@ Companies with concerns about the AGPL should contact us to work something out.<
 
   <tbody>
     <tr>
-      <td> 
+      <td>
       </td>
       <td> <b>Current Stable Version </b> </td>
       <td> <b>Previous Stable Version </b> </td>
@@ -140,17 +153,16 @@ Companies with concerns about the AGPL should contact us to work something out.<
     </tr>
     <tr>
       <td>
-      
-         Download:  
+
+         Download:
       </td>
-      <td> <!--[<a href="https://sourceforge.net/projects/routed/files/">0.1</a>]
-tar.gz (sf.net) --></td>
-      <td> </td>
       <td> [<a href="https://github.com/DennisOSRM/Project-OSRM/archive/v0.3.3.zip">v0.3.3 tarball</a>] </td>
+      <td> [<a href="https://github.com/DennisOSRM/Project-OSRM/archive/master.zip">master tarball</a>] </td>
+      <td> [<a href="https://github.com/DennisOSRM/Project-OSRM/archive/develop.zip">develop tarball</a>] </td>
     </tr>
     <tr>
       <td>
-       Git repository: 
+       Git repository:
       </td>
       <td> [see above]
 		</td>
