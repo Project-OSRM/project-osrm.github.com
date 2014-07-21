@@ -4,16 +4,6 @@
   <link href="osrm.css" rel="stylesheet" type="text/css">
 </head><body>
    <a href="https://github.com/DennisOSRM/Project-OSRM"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png" alt="Fork me on GitHub"></a>
-<!--div id="mainnav" class="nav">
-    <ul>
-      <li><a href="https://github.com/DennisOSRM/Project-OSRM/wiki">Wiki</a></li>
-      <li><a href="https://github.com/DennisOSRM/Project-OSRM/commits/master">History</a></li>
-      <li><a href="https://github.com/DennisOSRM/Project-OSRM/issues">Issues</a></li>
-      <li><a href="https://github.com/DennisOSRM/Project-OSRM/issues/milestones">Milestones</a></li>
-      <li><a href="https://github.com/DennisOSRM/Project-OSRM/graphs/languages">Graphs</a></li>
-      <li><a class="last" href="https://github.com/DennisOSRM/Project-OSRM/pulls">Pull Requests</a></li>
-    </ul>
-  </div-->
 <img src="osrm3-nq8.png" alt="Logo" >
 <hr>
 <a href="http://map.project-osrm.org/"><img src="images/demo-screenshot.png" alt="Screen Shot"></a>
@@ -102,61 +92,26 @@ OSRM is under active development.
       <td>
         Linux (kernel &gt;= 2.6.25)<br>
      	  FreeBSD<br>
-     	  Windows (more or less)<br>
+     	  Windows<br>
      	  Mac OS X
       </td>
       <td>
-      	g++ 4.4+ <br>
-      	llvm-g++/dragonegg 2.8+ <br>
-        llvm/clang 3.2+<br>
-        icc 13.0+</td>
+      	g++ 4.7.2+ <br>
+        llvm/clang 3.4+<br>
+        icc 13.0+<br>
+        MSVC Nov 2013 CTP+
+      </td>
       <td>
-      Boost 1.44+<br>
-      libxml2 2.7+<br>
-      cmake 2.8+<br>
-      stxxl 1.3.1+  <br>
-      libprotobuf 2.30+
+      Boost<br>
+      libxml2<br>
+      cmake<br>
+      stxxl<br>
+      libprotobuf
       </td>
     </tr>
   </tbody>
 </table>
 
-<h2> Current version </h2>
-
-<p> Version 0.1 (July 10, 2010) is a baseline release. It has basic features. Version 0.2 (March 2011) is much faster and more resource friendly. After that the project switched to a rolling release. Version 0.3.7 is the current release that is geared toward new and exciting features.</p>
-
-<!--h2> Major improvements in version 0.3 over 0.2</h2>
-<table>
-
-  <tbody>
-    <tr>
-    <td>
-
-<ul>
-
-  <li> Better heuristics for preprocesssing </li>
-  <li> Turn costs and restrictions </li>
-  <li> Windows support (and Mac in principle)</li>
-  <li> OSM file preprocessing multi-threaded </li>
-  <li> Support for GCC 4.4+ and also for systems not supporting OpenMP </li>
-  <li> User-definable speed profile </li>
-  <li> Better and more efficient polyline generalization </li>
-  <li> Scons has been replaced by cmake </li>
-  <li> Replacing nearest neighbor grid by a packed Hilbert R-tree </li>
-  <li> Fixing test to reflect new nn grid data structure </li>
-  <li> Speed optimization in PBF parsing </li>
-  <li> Don't abort if timestamp is missing, just warn </li>
-  <li> More verbose output during preprocessing </li>
-  <li> De-template-izing some of the code for faster (re-)compile </li>
-  <li> Replaced stringstream based int->string cast with boost karma </li>
-  <li> Removed evil lexical cast </li>
-  <li> Updated tests in test suite </li>
-  <li> Removed GUARANTEE macro </li>
-  <li> Fixed include order in many files </li>
-  <li> many, many bug fixes </li>
-  <li> many under-the-hood improvements </li>
-  <li> For a detailed list, please read the <a href="https://github.com/DennisOSRM/Project-OSRM/commits/master">Timeline</a>. </li>
-</ul-->
 </td>
       <td>
 
@@ -167,25 +122,6 @@ OSRM is under active development.
 </table>
 <h2> Links/Download </h2>
 
-<table border="1">
-
-  <tbody>
-    <tr>
-      <td>
-      </td>
-      <td> <b>Current Stable Version </b> </td>
-      <td> <b>Development Version </b> </td>
-    </tr>
-    <tr>
-      <td>
-
-         Download:
-      </td>
-      <td> [<a href="https://github.com/DennisOSRM/Project-OSRM/archive/v0.3.7.zip">v0.3.7 tarball</a>] </td>
-      <td> [<a href="https://github.com/DennisOSRM/Project-OSRM/archive/develop.zip">develop tarball</a>] </td>
-    </tr>
-  </tbody>
-</table>
 </p>
 <h2>Copyrights and permissions to to reproduce</h2>
 The text of this page is available for modification and reuse under the terms of the <a href="https://github.com/DennisOSRM/Project-OSRM/blob/master/LICENCE.TXT">(simplified) 2-clause BSD license</a>.
