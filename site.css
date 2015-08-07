@@ -26,7 +26,7 @@
 }
 
 .title {
-  font-family: 'Open Sans Condensed Bold';
+	font-family: 'Open Sans Condensed Bold';
 	font-size: 40px;
 	color: white;
 	text-align: center;
@@ -48,11 +48,11 @@ color: rgba(100, 82, 207, 0.5);
 -------------------------------------------------------- */
 .fill-navy			{ background-color: #28007D; }
 .fill-blue  		{ background-color: #5052CF; }
-.fill-lavendar	{ background-color: #B4BDF9; }
+.fill-lavendar		{ background-color: #B4BDF9; }
 .fill-teal			{ background-color: #939CB9; }
-.fill-light     { background-color: #E6F2FA; }
+.fill-light     	{ background-color: #E6F2FA; }
 .fill-gold			{ background-color: #FFCA1B; }
-.fill-white     { background-color: #fff; }
+.fill-white     	{ background-color: #fff; }
 
 
 
@@ -118,6 +118,13 @@ Details: http://www.positioniseverything.net/easyclearing.html
   height:0;
   clear:both;
   visibility:hidden;
+  }
+  
+.limiter {
+  width:83.3333%;
+  max-width:1000px;
+  margin-left:auto;
+  margin-right:auto;
   }
 
 
@@ -266,8 +273,8 @@ bdo {
   border-width: 3px;
   border-color: #FFCA1B;
   border-style: solid;
-  width: 120px;
   text-align: center;
+  background-color: transparent;
   }
   .button:hover { 
   	background-color: #FFCA1B;
