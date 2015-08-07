@@ -35,13 +35,12 @@
 .subhead {
   font-family: 'Open Sans Condensed Bold';
 	font-size: 24px;
-	color: rgba(40, 0, 125, 0.8);
+	color: rgba(87, 43, 122, 0.8);
 }
 
 .content {
 	font-family: 'Open Sans Condensed Bold';
 	font-size: 16px;
-	color: rgba(100, 82, 207, 0.5);
 	color: rgba(20, 82, 207, 0.6);
 }
 
@@ -57,7 +56,7 @@
 .fill-purple		{ background-color: rgba(87, 43, 122, 1); }
 .fill-light     { background-color: rgba(173, 182, 196, 1); }
 .fill-gold			{ background-color: rgba(255, 202, 27, 1); }
-.fill-white     	{ background-color: #fff; }
+.fill-white     { background-color: #fff; }
 
 
 
@@ -95,7 +94,7 @@ section {
 footer {
 	height: 5vh;
 	background-color: rgba(173, 182, 196, 1);
-	color: #E6F2FA;
+	color: rgba(255, 255, 255, 0.8);
 	font-family: 'Open Sans Condensed Light';
 	font-size: 12px;
 	letter-spacing: .5px;
@@ -105,8 +104,6 @@ footer {
     position:relative;
 }
 .overlay {
-		/*005591
-    background: rgba(0, 85, 145, 0.6)*/
     background: rgba(20, 82, 207, 0.6);
     position: absolute;
     width: 100%;
@@ -200,8 +197,9 @@ h2 { font-size:36px; line-height:42px; }
 h3 { font-size:24px; line-height:36px; }
 h4 { font-size:16px; font-weight:bold; }
 
-a       { color:#4698ca; }
-a:hover { color:#043b5d; }
+a       { font-size: 12px; color: rgba(87, 43, 122, 1); /*color:#4698ca;*/ }
+a:hover { color: white; background-color: rgba(87, 43, 122, 0.8); padding-left: 5px; padding-right: 5px; }
+
 
 label {
   font:14px/1.6667 'Helvetica neue', Helvetica, sans-serif;
@@ -285,8 +283,12 @@ bdo {
   .button:hover { 
   	background-color: #FFCA1B;
   	border-radius: 5px;
-  	color: #5052CF;
+  	color: white;
   }
+  a:hover .button {
+  	text-decoration: none;
+  	/* NO CLUE ON THAT PURPLE LINE */
+}
 
 
 
@@ -481,12 +483,7 @@ bdo {
     font-size:60px;
     }
 
-/* Forms */
-.radio-pill input[type=radio] + .button       { background-color:#fff; color:#000; }
-.radio-pill input[type=radio] + .button:hover { background-color:#eee; }
 
-.radio-pill input[type=radio]:checked + .button:hover,
-.radio-pill input[type=radio]:checked + .button { background-color:#4698ca; color:#fff; }
 
 /* Device style */
 .device {
