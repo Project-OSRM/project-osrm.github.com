@@ -1,128 +1,90 @@
-<html><head>
-  <meta http-equiv="Content-type" content="text/html; charset=iso-8859-1">
-  <title>Open Source Routing Machine</title>
-  <link href="osrm.css" rel="stylesheet" type="text/css">
-</head><body>
-   <a href="https://github.com/Project-OSRM/osrm-backend"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png" alt="Fork me on GitHub"></a>
-<img src="osrm3-nq8.png" alt="Logo" >
-<hr>
-<a href="http://map.project-osrm.org/"><img src="images/demo-screenshot.png" alt="Screen Shot"></a>
-<hr>
-Try our amazing public routing service at <a href="http://map.project-osrm.org/">http://map.project-osrm.org/</a>, meet us on <a href="irc://irc.oftc.net/osrm">IRC</a> (server: irc.oftc.net, channel: #osrm) or follow us on <a href="https://twitter.com/#!/ProjectOSRM">Twitter</a>.
-<p>
-Support the on-going OSRM development by picking up an item from our <a href="http://www.amazon.de/registry/wishlist/1V2TKTFOZIU80">Amazon Wish List</a>.
-<p>
-<A NAME="buildstatus"><h2>Current build status:</h2></A>
-<table>
-  <thead>
-  </thead>
-  <tbody>
-    <tr>
-      <td> Project OSRM (master, Linux) </td>
-      <td> <img src="https://travis-ci.org/Project-OSRM/osrm-backend.png?branch=master" alt="Build Status" /></b> </td>
-      <td> Project OSRM (develop, Linux) </td>
-      <td> <img src="https://travis-ci.org/Project-OSRM/osrm-backend.png?branch=develop" alt="Build Status" /></b> </td>
-      <td> Project OSRM (develop, Windows) </td>
-      <td> <img src="https://ci.appveyor.com/api/projects/status/4iuo3s9gxprmcjjh/branch/develop" alt="Build Status" /></b> </td>
-    </tr>
-    <tr>
-      <td> <a href="https://scan.coverity.com/projects/183">Coverity Scan</a> (develop) </td>
-      <td><img alt="Coverity Scan Build Status" src="https://scan.coverity.com/projects/183/badge.svg"/></td>
-      <td> LUAbind port (master) </td>
-      <td> <img src="https://travis-ci.org/DennisOSRM/luabind.png?branch=master" alt="Build Status" /></b> </td>
-    </tr>
-  </tbody>
-</table>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=utf-8 />
+	<title>Project OSRM</title>
+	<meta name='viewport' content='initial-scale=1.0 maximum-scale=1.0'>
+	<link href='site.css' rel='stylesheet' />
+</head>
+    
+<body>
 
-<h2> Support </h2>
+	<header>
+		<div class='row3 center'>
+			<img src='images/osrm_logo.svg' width='370' height='150'>
+		</div>
+	  
+	  <div class='fr'>  
+	  <!-- Place this tag where you want the button to render. -->
+		<a class="github-button" href="https://github.com/Project-OSRM/osrm-backend/fork" data-icon="octicon-git-branch" data-style="mega" data-count-href="/Project-OSRM/osrm-backend/network" data-count-api="/repos/Project-OSRM/osrm-backend#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork Project-OSRM/osrm-backend on GitHub">Fork</a>
+		</div>
+		
+	</header>
 
-	<ul>
-  <li> <b>Wiki</b> [<a href="https://github.com/Project-OSRM/osrm-backend/wiki">here</a>]
-  </li>
-  <li> <b>Mailing list </b> [<a href="http://lists.openstreetmap.org/listinfo/osrm-talk">here</a>]
-  </li>
-  <li> <b>IRC Channel </b> [<a href="irc://irc.oftc.net/osrm">server: irc.oftc.net, channel: #osrm</a>]
-  </li>
-  <li> <b>Bug Tracker </b> [<a href="https://github.com/Project-OSRM/osrm-backend/issues">here</a>]
-  </li>
-</ul>
+	<map class='contain'>
+		<div class='overlay col12'>
+			<div class='col6 margin4 space-top12 space-bottom2 title'>
+				Modern C++ routing engine for shortest paths in road networks.
+			</div>
+			<div class='col7 margin5'>
+				<div class='pad1y margin1 space-top4 button'>VIEW DEMO >></div>
+			</div>
+		</div>
+	</map>
+	
+	
+	<section class='pad2y'>
+	
+		<!-- headers -->
+		<div class='col12 clearfix'>
+	    <div class='col2 margin1 center'>
+	    	<div class='section-icons section1-icon space-bottom2'></div>
+	    </div>
+	    <div class='col2 margin1 center'>
+	    	<div class='section-icons section2-icon space-bottom2'></div>
+	    </div>
+	    <div class='col2 margin1 center'>
+	    	<div class='section-icons section3-icon space-bottom2'></div>
+	    </div>  
+	    <div class='col2 margin1 subhead'>Get in Touch.</div>
+		</div>
+		
+		<!-- content -->
+		<div class='col12 clearfix content'>
+	    <div class='col2 margin1 center'>Flexible import of </br> OpenStreetMap data.</div>
+	    <div class='col2 margin1 center'>Handles continental sized </br> networks within miliseconds.</div>
+	    <div class='col2 margin1 center'>Supports car, foot, walk modes; easily customized through profiles.</div>
+	    <div class='col2 margin1'>
+	    	<div class='col12 clearfix'>
+	    		<div class='col2'>
+	    			<div class='social-icons social1-icon'></div>
+					</div>
+	    		<div class='col9 margin1'><a href='irc://irc.oftc.net/osrm'>IRC Channel</a></div>
+	    	</div>
+	    	<div class='col12 clearfix'>
+	    		<div class='col2'>
+	    			<div class='social-icons social2-icon'></div>
+					</div>	    		
+					<div class='col9 margin1'><a href='https://lists.openstreetmap.org/listinfo/osrm-talk'>Mailing List</a></div>
+				</div>
+	    	<div class='col12 clearfix'>
+	    		<div class='col2'>
+	    			<div class='social-icons social3-icon'></div>
+					</div>
+					<div class='col9 margin1'><a href='https://twitter.com/ProjectOSRM'>Twitter</a></div>
+	    	</div>
+	    </div>
+		</div>
+		
+	</section>
 
-<h2>About the Project</h2>
 
+	<footer class='center pad-top2'>
+		© OSRM is free, open source, and available under the very permissive (simplified) 2-clause BSD license.
+	</footer>
 
-The Open Source Routing Machine (<strong>OSRM</strong>) is a C++ implementation of a high-performance routing engine for shortest paths in road networks.
-It combines sophisticated routing algorithms with the open and free road network data of the <a href="http://www.openstreetmap.org">OpenStreetMap</a> (OSM) project.
-Shortest path computation on a <strong>continental sized network</strong> can take up to several seconds if it is done without a so-called speedup-technique.
-OSRM is able to compute and output a shortest path between any origin and destination within a few miliseconds.
-Since it is designed with <strong>OpenStreetMap</strong> compatibility in mind, OSM data files can be easily imported.
-A <a href="http://map.project-osrm.org/">demo installation</a> is sponsored by Karlsruhe Institute of Technology and previously by our friends at <a href="http://www.geofabrik.de">Geofabrik</a>.
-OSRM is under active development.
-</p>
+	<!-- Place this tag right after the last button or just before your close body tag. -->
+	<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
 
-<p style="padding-bottom: 0px;"> The key features of <b>OSRM</b> are:
-</p>
-
-<ul style="margin-left: 20px;">
-
-  <li> High Performance Routing Algorithm </li>
-  <li> Flexible import of OSM data files </li>
-  <li> Written entirely in C++ and available under the very permissive <a href="https://github.com/Project-OSRM/osrm-backend/blob/master/LICENCE.TXT">(simplified) 2-clause BSD license</a> for anyone to use. Previously, it was licensed under the restrictive AGPL.</li>
-  <li> Ability to handle continental sized networks </li>
-  <li> Influenced by current and ongoing academic research: [<a href="http://algo2.iti.kit.edu/routeplanning.php">more info</a>]
-  </li>
-</ul>
-
-
-<h2> License </h2>
-
-<p> OSRM is free, open source, and available under the very permissive <a href="https://github.com/Project-OSRM/osrm-backend/blob/master/LICENCE.TXT">(simplified) 2-clause BSD license</a>.
-</p>
-
-<h2> Platforms supported </h2>
-
-<table>
-
-  <tbody>
-    <tr>
-      <td> <b>Operating Systems</b> </td>
-      <td> <b>Compilers</b> </td>
-      <td> <b>Third Party dependencies</b> </td>
-    </tr>
-    <tr>
-      <td>
-        Linux (kernel &gt;= 2.6.25)<br>
-     	  FreeBSD<br>
-     	  Windows<br>
-     	  Mac OS X
-      </td>
-      <td>
-      	g++ 4.8+ <br>
-        llvm/clang 3.4+<br>
-        icc 13.0+<br>
-        MSVC 2013 Nov CTP+
-      </td>
-      <td>
-      libboost<br>
-      libexpat<br>
-      cmake<br>
-      stxxl<br>
-      libtbb<br>
-      luabind<br>
-      libprotobuf
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-</td>
-      <td>
-
-<script tystxxlpe="text/javascript" src="http://www.ohloh.net/p/487596/widgets/project_basic_stats.js"></script>
-      </td>
-    </tr>
-  </tbody>
-</table>
-</p>
-<h2>Copyrights and permissions to to reproduce</h2>
-The text of this page is available for modification and reuse under the terms of the <a href="https://github.com/Project-OSRM/osrm-backend/blob/master/LICENCE.TXT">(simplified) 2-clause BSD license</a>.
-</body></html>
+  </body>
+</html>
