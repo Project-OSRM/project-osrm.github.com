@@ -110,9 +110,6 @@ footer {
 }
 
 
-/* Markup free clearing
-Details: http://www.positioniseverything.net/easyclearing.html
-------------------------------------------------------- */
 .clearfix { display:block; }
 .clearfix:after {
   content:'';
