@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>404 - Page Not Found</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --brand-blue: #1452cf;
+      --dark-gray: #2d2d2d;
+      --medium-gray: #808080;
+      --light-gray: #e8e8e8;
+      --white: #ffffff;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--dark-gray);
+      background-color: var(--white);
+    }
+
+    header {
+      border-bottom: 1px solid #e5e5e5;
+      padding: 16px 0;
+      margin-bottom: 0;
+    }
+
+    .header-content {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+      font-size: 14px;
+    }
+
+    .header-link {
+      color: var(--brand-blue);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .header-link:hover {
+      color: #0d3fa0;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+
+    .logo {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--brand-blue);
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-size: 56px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      color: var(--dark-gray);
+      line-height: 1.2;
+    }
+
+    .tagline {
+      font-size: 20px;
+      color: var(--medium-gray);
+      margin-bottom: 32px;
+      line-height: 1.6;
+      max-width: 800px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+
+    .nav-link {
+      display: inline-block;
+      padding: 12px 28px;
+      background-color: var(--brand-blue);
+      color: white;
+      text-decoration: none;
+      border-radius: 9999px;
+      font-weight: 500;
+      font-size: 16px;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .nav-link:hover {
+      background-color: #0d3fa0;
+    }
+
+    .nav-link-secondary {
+      background-color: var(--light-gray);
+      color: var(--dark-gray);
+    }
+
+    .nav-link-secondary:hover {
+      background-color: #d9d9d9;
+      color: var(--dark-gray);
+    }
+
+    .content-section {
+      max-width: 800px;
+      margin-top: 40px;
+    }
+
+    .content-section h2 {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--dark-gray);
+      margin-bottom: 16px;
+      margin-top: 32px;
+    }
+
+    .content-section p {
+      font-size: 16px;
+      color: var(--medium-gray);
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-content">
+      <a href="/" class="header-link">← Back to OSRM</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="logo">Page Not Found - 404</div>
+    <h1>Dead End</h1>
+
+    <p class="tagline">Our routing engine can find the shortest path between any two points on Earth. This page, however, doesn't exist. We checked. Twice. With Dijkstra's algorithm.</p>
+
+    <div class="nav-links">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/docs/" class="nav-link nav-link-secondary">Documentation</a>
+      <a href="https://map.project-osrm.org/" class="nav-link nav-link-secondary">Demo</a>
+      <a href="https://github.com/Project-OSRM/osrm-backend" class="nav-link nav-link-secondary">GitHub</a>
+    </div>
+
+    <div class="content-section">
+      <h2>What happened?</h2>
+      <p>It possibly snapped to the wrong road segment, possibly never built. Either way, you're stuck here — the one place OSRM can't route you out of.</p>
+      
+      <h2>Next steps</h2>
+      <p>Try the links above. They're well-connected.</p>
+    </div>
+  </div>
+
+</body>
+</html>
