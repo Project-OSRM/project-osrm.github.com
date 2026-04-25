@@ -53,8 +53,8 @@ jobs:
             # Extract href and src attributes using grep
             grep -o 'href="[^"]*"' "$html_file" | sed 's/href="//;s/"$//' | while read -r link; do
               [ -z "$link" ] && continue
-              # Skip external links and anchors
-              echo "$link" | grep -qE '^(https?:|\/\/|#|mailto:)' && continue
+              # Skip external links, anchors, and absolute paths (for server-relative URLs)
+              echo "$link" | grep -qE '^(https?:|\/\/|#|mailto:|/)' && continue
               
               path=$(echo "$link" | cut -d'#' -f1)
               [ -z "$path" ] && continue
@@ -70,7 +70,7 @@ jobs:
             
             grep -o 'src="[^"]*"' "$html_file" | sed 's/src="//;s/"$//' | while read -r link; do
               [ -z "$link" ] && continue
-              echo "$link" | grep -qE '^(https?:|\/\/|#|mailto:)' && continue
+              echo "$link" | grep -qE '^(https?:|\/\/|#|mailto:|/)' && continue
               
               path=$(echo "$link" | cut -d'#' -f1)
               [ -z "$path" ] && continue
