@@ -45,8 +45,8 @@ jobs:
 
       - name: Check for broken links (local)
         run: |
-          # Build a list of all HTML files
-          html_files=$(find . -name "*.html" -not -path "./.git/*" | sort)
+          # Build a list of all HTML files (excluding docs directory - generated content)
+          html_files=$(find . -name "*.html" -not -path "./.git/*" -not -path "./docs/*" | sort)
           
           for html_file in $html_files; do
             echo "Checking links in $html_file..."
