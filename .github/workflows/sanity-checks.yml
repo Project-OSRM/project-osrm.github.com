@@ -62,7 +62,8 @@ jobs:
               base_dir=$(dirname "$html_file")
               resolved_path=$(python3 -c "import os; print(os.path.normpath('$base_dir/$path'))" 2>/dev/null)
               
-              if [ ! -e "$resolved_path" ]; then
+              # Check if path exists, or if it's a path without .html extension that could map to an .html file
+              if [ ! -e "$resolved_path" ] && [ ! -e "$resolved_path.html" ]; then
                 echo "✗ Broken link in $html_file: $link"
                 exit 1
               fi
@@ -78,7 +79,7 @@ jobs:
               base_dir=$(dirname "$html_file")
               resolved_path=$(python3 -c "import os; print(os.path.normpath('$base_dir/$path'))" 2>/dev/null)
               
-              if [ ! -e "$resolved_path" ]; then
+              if [ ! -e "$resolved_path" ] && [ ! -e "$resolved_path.html" ]; then
                 echo "✗ Broken link in $html_file: $link"
                 exit 1
               fi
