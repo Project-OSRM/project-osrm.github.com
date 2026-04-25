@@ -1,0 +1,1 @@
+import{_ as a,o as n,c as e,ag as t}from"./chunks/framework.DM0yugQT.js";const h=JSON.parse('{"title":"Testsuite","description":"","frontmatter":{},"headers":[],"relativePath":"testing.md","filePath":"testing.md"}'),p={name:"testing.md"};function i(o,s,l,r,c,d){return n(),e("div",null,[...s[0]||(s[0]=[t("",89)])])}const g=a(p,[["render",i]]);export{h as __pageData,g as default};

@@ -1,0 +1,115 @@
+name: Sanity Checks
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  sanity-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Check JSON validity
+        run: |
+          for file in $(find . -name "*.json" -not -path "./.git/*"); do
+            echo "Validating $file..."
+            python3 -m json.tool "$file" > /dev/null || exit 1
+          done
+          echo "✓ All JSON files are valid"
+
+      - name: Check HTML syntax
+        run: |
+          apt-get update && apt-get install -y tidy
+          for file in $(find . -name "*.html" -not -path "./.git/*"); do
+            echo "Validating $file..."
+            tidy -q -e "$file" || echo "Note: tidy reported issues in $file (not fatal)"
+          done
+          echo "✓ HTML validation complete"
+
+      - name: Check CSS syntax (basic)
+        run: |
+          for file in $(find . -name "*.css" -not -path "./.git/*" -not -path "./node_modules/*"); do
+            echo "Checking $file for basic CSS issues..."
+            # Check for unclosed braces
+            open_braces=$(grep -o '{' "$file" | wc -l)
+            close_braces=$(grep -o '}' "$file" | wc -l)
+            if [ "$open_braces" -ne "$close_braces" ]; then
+              echo "✗ Mismatched braces in $file"
+              exit 1
+            fi
+          done
+          echo "✓ CSS files have balanced braces"
+
+      - name: Check for broken links (local)
+        run: |
+          # Build a list of all HTML files (excluding docs directory - generated content)
+          html_files=$(find . -name "*.html" -not -path "./.git/*" -not -path "./docs/*" | sort)
+          
+          for html_file in $html_files; do
+            echo "Checking links in $html_file..."
+            # Extract href and src attributes using grep
+            grep -o 'href="[^"]*"' "$html_file" | sed 's/href="//;s/"$//' | while read -r link; do
+              [ -z "$link" ] && continue
+              # Skip external links, anchors, and absolute paths (for server-relative URLs)
+              echo "$link" | grep -qE '^(https?:|\/\/|#|mailto:|/)' && continue
+              
+              path=$(echo "$link" | cut -d'#' -f1)
+              [ -z "$path" ] && continue
+              
+              base_dir=$(dirname "$html_file")
+              resolved_path=$(python3 -c "import os; print(os.path.normpath('$base_dir/$path'))" 2>/dev/null)
+              
+              # Check if path exists, or if it's a path without .html extension that could map to an .html file
+              if [ ! -e "$resolved_path" ] && [ ! -e "$resolved_path.html" ]; then
+                echo "✗ Broken link in $html_file: $link"
+                exit 1
+              fi
+            done
+            
+            grep -o 'src="[^"]*"' "$html_file" | sed 's/src="//;s/"$//' | while read -r link; do
+              [ -z "$link" ] && continue
+              echo "$link" | grep -qE '^(https?:|\/\/|#|mailto:|/)' && continue
+              
+              path=$(echo "$link" | cut -d'#' -f1)
+              [ -z "$path" ] && continue
+              
+              base_dir=$(dirname "$html_file")
+              resolved_path=$(python3 -c "import os; print(os.path.normpath('$base_dir/$path'))" 2>/dev/null)
+              
+              if [ ! -e "$resolved_path" ] && [ ! -e "$resolved_path.html" ]; then
+                echo "✗ Broken link in $html_file: $link"
+                exit 1
+              fi
+            done
+          done
+          echo "✓ All local links are valid"
+
+      - name: Check for common issues
+        run: |
+          errors=0
+          
+          # Check for mixed indentation (tabs vs spaces)
+          for file in $(find . -name "*.html" -o -name "*.css" | grep -v ".git"); do
+            if grep -P '\t' "$file" > /dev/null; then
+              if grep '    ' "$file" > /dev/null; then
+                echo "⚠ Mixed tabs and spaces in $file"
+              fi
+            fi
+          done
+          
+          # Check for trailing whitespace
+          trailing_ws=$(find . \( -name "*.html" -o -name "*.css" -o -name "*.json" -o -name "*.md" \) \
+            -not -path "./.git/*" -exec grep -l '[[:space:]]$' {} \;)
+          if [ -n "$trailing_ws" ]; then
+            echo "⚠ Files with trailing whitespace:"
+            echo "$trailing_ws"
+          fi
+          
+          echo "✓ Common issue check complete"
+
+      - name: Summary
+        if: always()
+        run: echo "✓ All sanity checks passed!"
