@@ -1,1 +1,0 @@
-import{_ as t,o as a,c as r,ag as n}from"./chunks/framework.C2NLiVii.js";const u=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"routed.md","filePath":"routed.md"}'),i={name:"routed.md"};function o(s,e,l,d,h,_){return a(),r("div",null,[...e[0]||(e[0]=[n("",7)])])}const m=t(i,[["render",o]]);export{u as __pageData,m as default};

@@ -1,0 +1,1 @@
+import{_ as t,o,c as a,ag as r}from"./chunks/framework.K54bclBu.js";const p=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"libosrm.md","filePath":"libosrm.md"}'),i={name:"libosrm.md"};function n(s,e,c,d,l,h){return o(),a("div",null,[...e[0]||(e[0]=[r("",9)])])}const m=t(i,[["render",n]]);export{p as __pageData,m as default};
