@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
   <title>Gauche LHT Classifier</title>
-  <script src="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js"></script>
-  <link href="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css" rel="stylesheet" />
+  <script src="https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js"></script>
+  <link href="https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css" rel="stylesheet" />
   <style>
     body { margin: 0; padding: 0; font-family: sans-serif; }
     #map { position: absolute; top: 0; bottom: 0; width: 100%; }
@@ -73,7 +73,7 @@
 
     const map = new maplibregl.Map({
       container: "map",
-      style: "https://pnorman.github.io/tilekiln-shortbread-demo/colorful.json",
+      style: "https://demotiles.maplibre.org/style.json",
       center: [8.682127, 50.110924],
       zoom: 3
     });
