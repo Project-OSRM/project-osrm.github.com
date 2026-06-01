@@ -183,7 +183,7 @@
 
       <div>
         <label for="server-url">osrm-routed base URL</label>
-        <input id="server-url" type="text" value="http://localhost:5000" />
+        <input id="server-url" type="text" value="https://router.project-osrm.org" />
       </div>
 
       <div class="row">
@@ -445,7 +445,10 @@
 
         const meta = document.createElement('div');
         meta.className = 'meta';
-        meta.innerHTML = `<strong>${labels.title}</strong>${labels.coords}<br>${labels.extra}`;
+
+        const strong = document.createElement('strong');
+        strong.textContent = labels.title;
+        meta.append(strong, labels.coords, document.createElement('br'), labels.extra);
 
         const remove = document.createElement('button');
         remove.className = 'danger';
@@ -523,6 +526,9 @@
 
     function buildTripUrl() {
       const server = getServerUrl();
+      if (!server) {
+        throw new Error('Please enter a valid osrm-routed base URL.');
+      }
       const coordinates = state.points.map((point) => `${point.lng},${point.lat}`).join(';');
       const url = new URL(`/trip/v1/driving/${coordinates}`, server);
       url.searchParams.set('roundtrip', 'true');
@@ -540,10 +546,10 @@
       }
 
       const requestId = ++state.tripRequestId;
-      const url = buildTripUrl();
-      setStatus(`Requesting trip from ${url.origin} ...`);
 
       try {
+        const url = buildTripUrl();
+        setStatus(`Requesting trip from ${url.origin} ...`);
         const response = await fetch(url, { headers: { Accept: 'application/json' } });
         if (!response.ok) {
           throw new Error(`HTTP ${response.status}`);
@@ -575,14 +581,15 @@
         setStatus(`Trip computed for ${state.points.length} locations.`);
       } catch (error) {
         clearRoute();
-        setStatus(`Trip error: ${error.message}`);
+        const message = error instanceof Error ? error.message : String(error);
+        setStatus(`Trip error: ${message}`);
       }
     }
 
     elements.clear.addEventListener('click', clearPoints);
     elements.refresh.addEventListener('click', runTrip);
     elements.serverUrl.addEventListener('change', () => {
-      localStorage.setItem('osrmTripServerUrl', getServerUrl());
+      getServerUrl();
       scheduleTrip();
     });
 
