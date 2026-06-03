@@ -14,7 +14,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           requireScope: false
-          disallowScopes: []
           types: |
             feat
             fix
