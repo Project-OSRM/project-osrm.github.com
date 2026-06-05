@@ -232,9 +232,38 @@
       refresh: document.getElementById('refresh'),
     };
 
-    const savedServerUrl = localStorage.getItem('osrmTripServerUrl');
-    if (savedServerUrl) {
-      elements.serverUrl.value = savedServerUrl;
+    function encodeShareHash() {
+      if (state.points.length === 0) {
+        if (history.replaceState) {
+          history.replaceState(null, '', window.location.pathname);
+        }
+        return;
+      }
+      const encoded = state.points.map((p) => `${p.lng.toFixed(6)},${p.lat.toFixed(6)}`).join(';');
+      const server = getServerUrl();
+      const hash = `#points=${encoded}&server=${encodeURIComponent(server)}`;
+      history.replaceState(null, '', hash);
+    }
+
+    function decodeShareHash() {
+      const hash = window.location.hash.slice(1);
+      if (!hash) {
+        return null;
+      }
+      const params = new URLSearchParams(hash);
+      const pointsParam = params.get('points');
+      const serverParam = params.get('server');
+      if (!pointsParam) {
+        return null;
+      }
+      const parsed = pointsParam.split(';').map((pair) => {
+        const parts = pair.split(',');
+        return { lng: Number.parseFloat(parts[0]), lat: Number.parseFloat(parts[1]) };
+      });
+      if (parsed.some((p) => Number.isNaN(p.lng) || Number.isNaN(p.lat))) {
+        return null;
+      }
+      return { points: parsed, server: serverParam ? decodeURIComponent(serverParam) : null };
     }
 
     function setStatus(message) {
@@ -445,10 +474,7 @@
 
         const meta = document.createElement('div');
         meta.className = 'meta';
-
-        const strong = document.createElement('strong');
-        strong.textContent = labels.title;
-        meta.append(strong, labels.coords, document.createElement('br'), labels.extra);
+        meta.innerHTML = `<strong>${labels.title}</strong>${labels.coords}<br>${labels.extra}`;
 
         const remove = document.createElement('button');
         remove.className = 'danger';
@@ -461,6 +487,7 @@
       });
 
       updateButtons();
+      encodeShareHash();
     }
 
     function addPoint(lng, lat) {
@@ -519,16 +546,11 @@
 
     function getServerUrl() {
       const raw = elements.serverUrl.value.trim();
-      const normalized = raw.endsWith('/') ? raw.slice(0, -1) : raw;
-      localStorage.setItem('osrmTripServerUrl', normalized);
-      return normalized;
+      return raw.endsWith('/') ? raw.slice(0, -1) : raw;
     }
 
     function buildTripUrl() {
       const server = getServerUrl();
-      if (!server) {
-        throw new Error('Please enter a valid osrm-routed base URL.');
-      }
       const coordinates = state.points.map((point) => `${point.lng},${point.lat}`).join(';');
       const url = new URL(`/trip/v1/driving/${coordinates}`, server);
       url.searchParams.set('roundtrip', 'true');
@@ -546,10 +568,10 @@
       }
 
       const requestId = ++state.tripRequestId;
+      const url = buildTripUrl();
+      setStatus(`Requesting trip from ${url.origin} ...`);
 
       try {
-        const url = buildTripUrl();
-        setStatus(`Requesting trip from ${url.origin} ...`);
         const response = await fetch(url, { headers: { Accept: 'application/json' } });
         if (!response.ok) {
           throw new Error(`HTTP ${response.status}`);
@@ -581,20 +603,55 @@
         setStatus(`Trip computed for ${state.points.length} locations.`);
       } catch (error) {
         clearRoute();
-        const message = error instanceof Error ? error.message : String(error);
-        setStatus(`Trip error: ${message}`);
+        setStatus(`Trip error: ${error.message}`);
       }
     }
 
     elements.clear.addEventListener('click', clearPoints);
     elements.refresh.addEventListener('click', runTrip);
     elements.serverUrl.addEventListener('change', () => {
-      getServerUrl();
       scheduleTrip();
     });
 
+    function restoreFromHash() {
+      const shared = decodeShareHash();
+
+      // Hash overrides the HTML default
+      if (shared && shared.server) {
+        elements.serverUrl.value = shared.server;
+      }
+
+      if (!shared || shared.points.length === 0) {
+        return;
+      }
+
+      // Restore points (up to the limit)
+      const toRestore = shared.points.slice(0, MAX_LOCATIONS);
+      for (const p of toRestore) {
+        const point = {
+          id: state.nextId++,
+          lng: p.lng,
+          lat: p.lat,
+          tripOrder: undefined,
+          marker: null,
+          element: null,
+        };
+        state.points.push(point);
+        createMarker(point);
+      }
+      syncUI();
+      fitToPoints();
+
+      if (state.points.length >= 3) {
+        scheduleTrip();
+      } else if (state.points.length > 0) {
+        setStatus('Add at least three points to compute a trip.');
+      }
+    }
+
     map.on('load', () => {
       ensureRouteLayer();
+      restoreFromHash();
       syncUI();
       updateButtons();
       map.on('click', (event) => {
